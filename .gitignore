@@ -1,3 +1,5 @@
+output
+*.conf
 
 # Created by https://www.gitignore.io/api/vim,code,pydev,linux,macos,emacs,python,windows,eclipse,pycharm+all
 # Edit at https://www.gitignore.io/?templates=vim,code,pydev,linux,macos,emacs,python,windows,eclipse,pycharm+all
