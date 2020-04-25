@@ -1,15 +1,7 @@
 import os
-
-
-def get_privkey():
-    with os.popen('wg genkey') as result:
-        return str(list(result)[0]).replace("\n", "")
-
-
-def get_pubkey(privkey):
-    with os.popen('echo ' + privkey + ' | wg pubkey') as result:
-        return str(list(result)[0]).replace("\n", "")
-
+import base64
+import nacl.utils
+from nacl.public import PrivateKey
 
 quantity = input("Quanti certificati client?: ")
 
@@ -17,11 +9,11 @@ if not quantity.isnumeric():
     print("Invalid input")
     quit(1)
 
-privkeys = [get_privkey() for _ in range(int(quantity)+1)]
+privkeys = [PrivateKey.generate() for _ in range(int(quantity)+1)]
 keys = {}
 
 for privkey in privkeys:
-    keys[privkey] = get_pubkey(privkey)
+    keys[base64.b64encode(bytes(privkey)).decode()] = base64.b64encode(bytes(privkey.public_key)).decode()
 
 
 ask_subnet = input("Inserisci la subnet di rete nel formato [x.x.x.0/xx]: ")
