@@ -62,7 +62,7 @@ with open(WIREGUARD_OUTPUT_FOLDER + "/config.md", "w") as config_file:
     config_file.write("- IP Wireguard network server: " +
                       WIREGUARD_SUBNET + "."+WIREGUARD_SERVER+"\n\n")
     config_file.write("## Chiavi Wireguard\n\n")
-    config_file.write("|IP|Note|Pubkey|Privkey|\n")
+    config_file.write("|IP|Note|Privkey|Pubkey|\n")
     config_file.write("|---|---|---|---|\n")
     ip = WIREGUARD_CLIENTIP_START
 
