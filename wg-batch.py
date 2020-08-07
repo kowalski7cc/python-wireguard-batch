@@ -1,7 +1,6 @@
 #!/bin/env python
 import os
 import base64
-import nacl.utils
 from nacl.public import PrivateKey
 
 quantity = input("Quanti certificati client?: ")
@@ -46,7 +45,7 @@ ask_has_server =  input("Hai già una configurazione server? ([n]/y): ")
 if ask_has_server.lower() == "y":
     ask_server = input("Inserisci la chiave privata: ")
     if ask_server != "":
-        serverkeys = (ask_server, get_privkey(ask_server))
+        serverkeys = (ask_server, base64.b64encode(bytes(PrivateKey(base64.b64decode(ask_server)).public_key)))
 
 try:
     os.makedirs(WIREGUARD_OUTPUT_FOLDER)
